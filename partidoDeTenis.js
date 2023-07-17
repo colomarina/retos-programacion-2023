@@ -17,32 +17,30 @@
  * - Consulta las reglas del juego si tienes dudas sobre el sistema de puntos.   
  */
 
-const namePoints = ['Love', 15, 30, 40]
-
 const winner = (array) => {
-  let pointsP1 = 0;
-  let pointsP2 = 0;
-  array.forEach(player => {
-    if (player === "P1") {
-      pointsP1 += 1
-    } else {
-      pointsP2 += 1
-    }
-    if (pointsP1 === 5 || pointsP2 === 5) { 
-      return console.log(`Ha ganado ${player}`)
-    }
-    if (pointsP1 === 3 && pointsP2 === 3) {
-      console.log(`Deuce`)
-    } else  
-    if (pointsP1 === 4) {
-      console.log(`Ventaja ${player}`)
-    } else
-    if (pointsP2 === 4) {
-      console.log(`Ventaja ${player}`)
-    } else {
-      console.log(`${namePoints[pointsP1]} - ${namePoints[pointsP2]}`)
-    }
-  });
+  try {
+    if (array.length === 0) throw new ('El array esta vacio');
+    const namePoints = ['Love', 15, 30, 40]
+    let pointsP1 = 0;
+    let pointsP2 = 0;
+  
+    array.forEach(player => {
+      (player === "P1") ? pointsP1 += 1 : pointsP2 += 1;
+      if (pointsP1 === 5 || pointsP2 === 5) return console.log(`Ha ganado ${player}`)
+      if (pointsP1 === 4) {
+        console.log(`Ventaja ${player}`)
+      } else if (pointsP2 === 4) {
+        console.log(`Ventaja ${player}`)
+      } else if (pointsP1 === 3 && pointsP2 === 3) {
+        console.log(`Deuce`)
+      } else  {
+        console.log(`${namePoints[pointsP1]} - ${namePoints[pointsP2]}`)
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
+console.log('Partido de tenis')
 winner(["P1", "P1", "P2", "P2", "P1", "P2", "P1", "P1"])
